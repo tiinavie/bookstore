@@ -5,25 +5,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private String title, author;
+	private Long id;
+	private String title, author, isbn;
 	@Column(name = "publishing_year")
 	private int year;
-	private String isbn;
 	private double price;
+
+	@ManyToOne
+	@JoinColumn(name = "categoryid")
+	private Category category;
 
 	// konstruktorit
 	public Book() {
-//		this.title = null;
-//		this.author = null;
-//		this.year = 0;
-//		this.isbn = null;
-//		this.price = 0;
 	}
 
 	public Book(String title, String author, int year, String isbn, double price) {
@@ -36,11 +36,11 @@ public class Book {
 	}
 
 	// Getters and Setters
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -84,10 +84,19 @@ public class Book {
 		this.price = price;
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	// toString
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn
 				+ ", price=" + price + "]";
 	}
+
 }

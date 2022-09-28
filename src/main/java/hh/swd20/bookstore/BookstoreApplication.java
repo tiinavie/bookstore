@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 
 import hh.swd20.bookstore.domain.Book;
 import hh.swd20.bookstore.domain.BookRepository;
+import hh.swd20.bookstore.domain.Category;
+import hh.swd20.bookstore.domain.CategoryRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -16,7 +18,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository bookRepository) {
+	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
 			bookRepository.save(new Book("Alice Isn\'t Dead", "Joseph Fink", 2018, "978-0062844132", 18.68));
 			bookRepository.save(
@@ -26,6 +28,9 @@ public class BookstoreApplication {
 			bookRepository.save(new Book("The Graveyard Book", "Neil Gaiman", 2008, "978-0-7475-9862-6", 7.99));
 			bookRepository.save(new Book("American Gods", "Neil Gaiman", 2001, "0-7472-6374-4", 6.99));
 
+			categoryRepository.save(new Category("Fantasy"));
+			categoryRepository.save(new Category("Scifi"));
+			categoryRepository.save(new Category("Horror"));
 		};
-	}
+	};
 }
