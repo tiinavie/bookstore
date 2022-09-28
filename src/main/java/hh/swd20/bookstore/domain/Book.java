@@ -24,6 +24,11 @@ public class Book {
 
 	// konstruktorit
 	public Book() {
+		this.title = null;
+		this.author = null;
+		this.year = 0;
+		this.isbn = null;
+		this.price = 0;
 	}
 
 	public Book(String title, String author, int year, String isbn, double price) {

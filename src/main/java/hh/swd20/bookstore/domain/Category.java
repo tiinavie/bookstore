@@ -21,6 +21,7 @@ public class Category {
 
 	// konstruktorit
 	public Category() {
+		this.name = null;
 	}
 
 	public Category(String name) {
