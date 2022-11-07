@@ -1,6 +1,7 @@
 package hh.swd20.bookstore.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,10 +30,16 @@ public class BookController {
 		return "booklist";
 	}
 
-	// RESTful service to get all students
+	// RESTful service to get all books
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public @ResponseBody List<Book> booklistRest() {
 		return (List<Book>) bookRepository.findAll();
+	}
+
+	// RESTful service to get books by id
+	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
+	public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {
+		return bookRepository.findById(bookId);
 	}
 
 	// Add new book

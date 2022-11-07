@@ -32,6 +32,9 @@ public class BookstoreApplication {
 			categoryRepository.save(new Category("Fantasy"));
 			categoryRepository.save(new Category("Scifi"));
 			categoryRepository.save(new Category("Horror"));
+			categoryRepository.save(new Category("YA"));
+			categoryRepository.save(new Category("Historical"));
+			categoryRepository.save(new Category("Romance"));
 		};
 	};
 }
