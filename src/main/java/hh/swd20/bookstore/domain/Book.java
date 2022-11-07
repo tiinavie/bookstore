@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Book {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String title, author, isbn;
 	@Column(name = "publishing_year")
@@ -29,15 +29,17 @@ public class Book {
 		this.year = 0;
 		this.isbn = null;
 		this.price = 0;
+		this.category = null;
 	}
 
-	public Book(String title, String author, int year, String isbn, double price) {
+	public Book(String title, String author, int year, String isbn, double price, Category category) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.year = year;
 		this.isbn = isbn;
 		this.price = price;
+		this.category = category;
 	}
 
 	// Getters and Setters
@@ -65,20 +67,20 @@ public class Book {
 		this.author = author;
 	}
 
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
 	public String getIsbn() {
 		return isbn;
 	}
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 	public double getPrice() {
@@ -100,8 +102,8 @@ public class Book {
 	// toString
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn
-				+ ", price=" + price + "]";
+		return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price
+				+ ", category=" + category + "]";
 	}
 
 }

@@ -48,11 +48,12 @@ public class BookController {
 		return "redirect:../booklist";
 	}
 
-//	// Edit a book from booklist
-//	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-//	public String editBook(@PathVariable("id") Long bookId, Model model) {
-//		bookRepository.save(book);
-//		return "redirect:../booklist";
-//	}
+	// Edit a book from booklist
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String editBook(@PathVariable("id") Long bookId, Model model) {
+		model.addAttribute("book", bookRepository.findById(bookId));
+		model.addAttribute("categories", categoryRepository.findAll());
+		return "editbook";
+	}
 
 }
