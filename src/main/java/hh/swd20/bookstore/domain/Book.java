@@ -11,13 +11,12 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Book {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title, author, isbn;
 	@Column(name = "publishing_year")
 	private int year;
 	private double price;
-
 	@ManyToOne
 	@JoinColumn(name = "categoryid")
 	private Category category;
@@ -102,8 +101,12 @@ public class Book {
 	// toString
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price
-				+ ", category=" + category + "]";
+		if (this.category != null)
+			return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price="
+					+ price + ", category=" + category + "]";
+		else
+			return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price="
+					+ price + "]";
 	}
 
 }
