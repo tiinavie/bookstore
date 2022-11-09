@@ -23,19 +23,23 @@ public class BookstoreApplication {
 	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository,
 			UserRepository userRepository) {
 		return (args) -> {
-			bookRepository.save(new Book("Alice Isn\'t Dead", "Joseph Fink", 2018, "9780062844132", 18.68, null));
-			bookRepository.save(new Book("Welcome to Night Vale", "Joseph Fink & Jeffrey Cranor", 2015, "9780062351425",
-					15.99, null));
-			bookRepository
-					.save(new Book("It Devours!", "Joseph Fink & Jeffrey Cranor", 2017, "9780062476050", 16.99, null));
-			bookRepository.save(new Book("Coraline", "Neil Gaiman", 2002, "0380977788", 15.99, null));
-			bookRepository.save(new Book("The Graveyard Book", "Neil Gaiman", 2008, "9780747598626", 7.99, null));
-			bookRepository.save(new Book("American Gods", "Neil Gaiman", 2001, "0747263744", 6.99, null));
+			Category category1 = new Category("Fantasy");
+			categoryRepository.save(category1);
+			Category category2 = new Category("Horror");
+			categoryRepository.save(category2);
+			Category category3 = new Category("YA");
+			categoryRepository.save(category3);
+			Category category4 = new Category("Romance");
+			categoryRepository.save(category4);
 
-			categoryRepository.save(new Category("Fantasy"));
-			categoryRepository.save(new Category("Horror"));
-			categoryRepository.save(new Category("YA"));
-			categoryRepository.save(new Category("Romance"));
+			bookRepository.save(new Book("Alice Isn\'t Dead", "Joseph Fink", 2018, "9780062844132", 18.68, category2));
+			bookRepository.save(new Book("Welcome to Night Vale", "Joseph Fink & Jeffrey Cranor", 2015, "9780062351425",
+					15.99, category2));
+			bookRepository.save(
+					new Book("It Devours!", "Joseph Fink & Jeffrey Cranor", 2017, "9780062476050", 16.99, category2));
+			bookRepository.save(new Book("Coraline", "Neil Gaiman", 2002, "0380977788", 15.99, category2));
+			bookRepository.save(new Book("The Graveyard Book", "Neil Gaiman", 2008, "9780747598626", 7.99, category1));
+			bookRepository.save(new Book("American Gods", "Neil Gaiman", 2001, "0747263744", 6.99, category1));
 
 			// users: admin/admin and user/user
 			User user1 = new User("admin", "$2a$10$XShpBG.aRgR1fU2mN5PjyOOzAu8NUm4iXEM5SBJNKEF.b4LJQGMOK", "ADMIN");

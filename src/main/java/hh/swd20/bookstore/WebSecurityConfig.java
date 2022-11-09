@@ -21,9 +21,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/css/**", "/books").permitAll().and().authorizeRequests()
-				.anyRequest().authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/booklist")
-				.permitAll().and().logout().permitAll();
+		http
+		.authorizeRequests().antMatchers("/", "/css/**", "/books")
+			.permitAll()
+		.and()
+		.authorizeRequests()
+			.antMatchers("/h2-console/**")
+			.permitAll()
+			.anyRequest()
+			.authenticated()
+		.and()
+		.csrf()
+		.ignoringAntMatchers("/h2-console/**")
+		.and()
+		.headers()
+			.frameOptions()
+			.sameOrigin()
+		.and()
+		.formLogin()
+			.loginPage("/login")
+			.defaultSuccessUrl("/booklist")
+			.permitAll()
+		.and()
+		.logout()
+			.permitAll();
 	}
 
 	@Autowired
